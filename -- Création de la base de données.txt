@@ -1,0 +1,22 @@
+-- Création de la base de données
+CREATE DATABASE IF NOT EXISTS mydatabase;
+
+-- Utilisation de la base de données créée
+USE mydatabase;
+
+-- Création de la table utilisateur
+CREATE TABLE IF NOT EXISTS utilisateurs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(255),
+    prenom VARCHAR(255),
+    email VARCHAR(255)
+);
+
+-- Insertion de données d'utilisateur
+INSERT INTO utilisateurs (nom, prenom, email) VALUES
+('Dupont', 'Jean', 'jean.dupont@example.com'),
+('Martin', 'Claire', 'claire.martin@example.com'),
+('Durand', 'Pierre', 'pierre.durand@example.com');
+
+-- Récupération des données d'utilisateur
+SELECT * FROM utilisateurs;
