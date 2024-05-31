@@ -12,11 +12,34 @@ CREATE TABLE IF NOT EXISTS utilisateurs (
     email VARCHAR(255)
 );
 
+-- Création de la table projets
+CREATE TABLE IF NOT EXISTS projets (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    utilisateur_id INT,
+    nom_projet VARCHAR(255),
+    description TEXT,
+    FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id)
+);
+
 -- Insertion de données d'utilisateur
 INSERT INTO utilisateurs (nom, prenom, email) VALUES
 ('Dupont', 'Jean', 'jean.dupont@example.com'),
 ('Martin', 'Claire', 'claire.martin@example.com'),
 ('Durand', 'Pierre', 'pierre.durand@example.com');
 
+-- Insertion de données de projets
+INSERT INTO projets (utilisateur_id, nom_projet, description) VALUES
+(1, 'Projet Alpha', 'Description du Projet Alpha'),
+(2, 'Projet Beta', 'Description du Projet Beta'),
+(3, 'Projet Gamma', 'Description du Projet Gamma');
+
 -- Récupération des données d'utilisateur
 SELECT * FROM utilisateurs;
+
+-- Récupération des données de projets
+SELECT * FROM projets;
+
+-- Récupération des données d'utilisateur avec leurs projets
+SELECT utilisateurs.nom, utilisateurs.prenom, projets.nom_projet, projets.description
+FROM utilisateurs
+JOIN projets ON utilisateurs.id = projets.utilisateur_id;
