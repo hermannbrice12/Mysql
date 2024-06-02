@@ -21,6 +21,15 @@ CREATE TABLE IF NOT EXISTS projets (
     FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id)
 );
 
+-- Création de la table tâches
+CREATE TABLE IF NOT EXISTS taches (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    projet_id INT,
+    description TEXT,
+    statut VARCHAR(50),
+    FOREIGN KEY (projet_id) REFERENCES projets(id)
+);
+
 -- Insertion de données d'utilisateur
 INSERT INTO utilisateurs (nom, prenom, email) VALUES
 ('Dupont', 'Jean', 'jean.dupont@example.com'),
@@ -33,6 +42,15 @@ INSERT INTO projets (utilisateur_id, nom_projet, description) VALUES
 (2, 'Projet Beta', 'Description du Projet Beta'),
 (3, 'Projet Gamma', 'Description du Projet Gamma');
 
+-- Insertion de données de tâches
+INSERT INTO taches (projet_id, description, statut) VALUES
+(1, 'Tâche 1 du Projet Alpha', 'En cours'),
+(1, 'Tâche 2 du Projet Alpha', 'À faire'),
+(2, 'Tâche 1 du Projet Beta', 'Terminé'),
+(2, 'Tâche 2 du Projet Beta', 'En cours'),
+(3, 'Tâche 1 du Projet Gamma', 'À faire'),
+(3, 'Tâche 2 du Projet Gamma', 'À faire');
+
 -- Récupération des données d'utilisateur
 SELECT * FROM utilisateurs;
 
@@ -43,3 +61,11 @@ SELECT * FROM projets;
 SELECT utilisateurs.nom, utilisateurs.prenom, projets.nom_projet, projets.description
 FROM utilisateurs
 JOIN projets ON utilisateurs.id = projets.utilisateur_id;
+
+-- Récupération des données de tâches
+SELECT * FROM taches;
+
+-- Récupération des données de tâches avec leurs projets associés
+SELECT projets.nom_projet, taches.description, taches.statut
+FROM taches
+JOIN projets ON taches.projet_id = projets.id;
