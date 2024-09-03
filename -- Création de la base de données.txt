@@ -62,10 +62,4 @@ SELECT utilisateurs.nom, utilisateurs.prenom, projets.nom_projet, projets.descri
 FROM utilisateurs
 JOIN projets ON utilisateurs.id = projets.utilisateur_id;
 
--- Récupération des données de tâches
-SELECT * FROM taches;
 
--- Récupération des données de tâches avec leurs projets associés
-SELECT projets.nom_projet, taches.description, taches.statut
-FROM taches
-JOIN projets ON taches.projet_id = projets.id;
